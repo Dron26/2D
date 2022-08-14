@@ -1,27 +1,26 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(HashAnimNames))]
 
 public class Coin : MonoBehaviour
 {
-    private HashAnimNames _animation;
     private Animator _animator;
-    private bool isRotate;
+    private bool _isRotate;
 
     private void Awake()
     {
-         isRotate=true;
-        _animation = GetComponent<HashAnimNames>();
+         _isRotate=true;
         _animator = GetComponent<Animator>();
-        _animator.SetBool(_animation.CoinRotation, isRotate);
+        _animator.SetBool(HashAnimNames.CoinRotation, _isRotate);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Player>())
+        if (other.TryGetComponent<Player>(out Player player))
         {
-            isRotate = false;
-            _animator.SetBool(_animation.CoinRotation, isRotate);
+            _isRotate = false;
+            _animator.SetBool(HashAnimNames.CoinRotation, _isRotate);
             Destroy(gameObject, 1.0f);
         }
     }

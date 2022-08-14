@@ -1,13 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(HashAnimNames))]
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 
 public class Patrol : MonoBehaviour
 {
     [SerializeField] private Transform[] _points;
 
     private Animator _animator;
-    private HashAnimNames _animation;
     private int _selectpoint;
     private float _minDistance;
     private float _speed;
@@ -16,11 +17,11 @@ public class Patrol : MonoBehaviour
     private bool _isWalk;
     private bool _flip;
     private bool _isFacingRight = true;
+    private SpriteRenderer _spriteRenderer;
 
-
-    void Start()
+    private void Avake() 
     {
-        _animation=GetComponent<HashAnimNames>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         _selectpoint = Random.Range(0, _points.Length);
         _isWalk = true;
@@ -28,13 +29,12 @@ public class Patrol : MonoBehaviour
         _speed = 15;
         _minDistance = 0.2f;
         _waitTime = _startWaitTime;
-        
     }
 
-    void Update()
+    private void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, _points[_selectpoint].position, _speed * Time.deltaTime);
-        _animator.SetBool(_animation.SkeletonWalk, _isWalk);
+        _animator.SetBool(HashAnimNames.SkeletonWalk, _isWalk);
 
         if (Vector2.Distance(transform.position,_points[_selectpoint].position)< _minDistance)
         {
@@ -42,10 +42,7 @@ public class Patrol : MonoBehaviour
 
             if (_waitTime<=0)
             {
-                _selectpoint = Random.Range(0, _points.Length);
-                _waitTime = _startWaitTime;
-                Flip();
-                _isWalk = true;
+                StartCoroutine(WaitInPoint());
             }
             else
             {
@@ -54,10 +51,19 @@ public class Patrol : MonoBehaviour
         }
     }
 
-    public void Flip()
+    private void Flip()
     {
         _isFacingRight = !_isFacingRight;
         _flip = !_flip;
-        gameObject.GetComponent<SpriteRenderer>().flipX = _flip;
+        _spriteRenderer.flipX = _flip;
+    }
+
+    private IEnumerator WaitInPoint()
+    {
+        _selectpoint = Random.Range(0, _points.Length);
+        _waitTime = _startWaitTime;
+        Flip();
+        _isWalk = true;
+        yield return new WaitForSeconds(0.1f);
     }
 }

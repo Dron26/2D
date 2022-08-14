@@ -1,7 +1,8 @@
 using UnityEngine;
 
-[RequireComponent(typeof(HashAnimNames))]
-[RequireComponent(typeof(PlayerMove))]
+[RequireComponent(typeof(PlayerMover))]
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 
 public class Player : MonoBehaviour
 {}

@@ -57727,14 +57727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1082b344960d3742bcfdfd8037f07f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedFloat: -823668238
-  vSpeedFloat: 1685875088
-  Ground: -1605138850
-  Crouch: -2015693266
-  NormalAttack: -1614611405
-  Death: 646380074
-  SkeletonWalk: 721447535
-  CoinRotation: -767363173
 --- !u!4 &1765992268 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3753206954957249300, guid: 65e99e6ca4b42764481acdee1f4e433d, type: 3}

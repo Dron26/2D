@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
 
+
 public class Patrol : MonoBehaviour
 {
     [SerializeField] private Transform[] _points;
@@ -19,7 +20,7 @@ public class Patrol : MonoBehaviour
     private bool _isFacingRight = true;
     private SpriteRenderer _spriteRenderer;
 
-    private void Avake() 
+    private void Awake() 
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -43,11 +44,13 @@ public class Patrol : MonoBehaviour
             if (_waitTime<=0)
             {
                 StartCoroutine(WaitInPoint());
+                _waitTime = _startWaitTime;
             }
             else
             {
                 _waitTime -= Time.deltaTime;
             }
+            
         }
     }
 
@@ -60,8 +63,7 @@ public class Patrol : MonoBehaviour
 
     private IEnumerator WaitInPoint()
     {
-        _selectpoint = Random.Range(0, _points.Length);
-        _waitTime = _startWaitTime;
+        _selectpoint = Random.Range(0, _points.Length);       
         Flip();
         _isWalk = true;
         yield return new WaitForSeconds(0.1f);

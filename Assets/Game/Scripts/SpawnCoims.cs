@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpawnCoims : MonoBehaviour
 { 
-    [SerializeField] private GameObject _coin;
+    [SerializeField] private Coin _coin;
 
     private void Start()
     {       

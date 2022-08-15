@@ -25,9 +25,9 @@ public class PlayerMover : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer =GetComponent<SpriteRenderer>();
-        _flip = _spriteRenderer.GetComponent<SpriteRenderer>().flipX;
+        _flip = _spriteRenderer.flipX;
         _animator = GetComponent<Animator>();
-        _groundCheck =transform.GetChild(0).GetComponent<Transform>();
+        _groundCheck =transform.GetChild(0);
         _rigidbody2D = GetComponent<Rigidbody2D>(); 
     }
 

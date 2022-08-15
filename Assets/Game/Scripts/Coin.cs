@@ -17,11 +17,13 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        float timeToDestroy=1.0f;
+
         if (other.TryGetComponent<Player>(out Player player))
         {
             _isRotate = false;
             _animator.SetBool(HashAnimNames.CoinRotation, _isRotate);
-            Destroy(gameObject, 1.0f);
+            Destroy(gameObject, timeToDestroy);
         }
     }
 }

@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3753206954957249300}
   - component: {fileID: 3753206954957249301}
-  - component: {fileID: 3753206954957249302}
   - component: {fileID: 3753206954957249323}
-  - component: {fileID: 3753206954957249322}
+  - component: {fileID: 3233642396843849126}
   m_Layer: 0
   m_Name: Skeleton enemy_43
   m_TagString: Untagged
@@ -87,23 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3753206954957249302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3753206954957249303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71e07eff5c700e14ea4f7c5a811d3f68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _points:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!95 &3753206954957249323
 Animator:
   serializedVersion: 4
@@ -124,7 +106,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3753206954957249322
+--- !u!114 &3233642396843849126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,14 +115,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3753206954957249303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1082b344960d3742bcfdfd8037f07f2, type: 3}
+  m_Script: {fileID: 11500000, guid: dbe66a92cb1f58540adb67b0f7be294a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedFloat: -823668238
-  vSpeedFloat: 1685875088
-  Ground: -1605138850
-  Crouch: -2015693266
-  NormalAttack: -1614611405
-  Death: 646380074
-  SkeletonWalk: 721447535
-  CoinRotation: -767363173
+  _points:
+  - {fileID: 0}

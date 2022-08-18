@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -7,8 +8,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public event UnityAction<float> HealthHandler;
+
     public float MaxHealth { get; private set; }
-    public float MinHealth{ get; private set; }
+    public float MinHealth { get; private set; }
     public float CurrentHealth { get; private set; }
 
     private bool isKilled = false;
@@ -16,50 +19,47 @@ public class Player : MonoBehaviour
 
     public Player()
     {
-        MaxHealth = 100f;
+        MaxHealth = 100;
         MinHealth = 0;
         CurrentHealth = MaxHealth;
     }
 
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
-
     public void OnReceiveHit(float hitPoints)
     {
-        if (hitPoints>0)
+        hitPoints = Mathf.Clamp(hitPoints, MinHealth, MaxHealth);
+
+        CurrentHealth -= hitPoints;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, MinHealth, MaxHealth);
+
+        if (CurrentHealth == MinHealth)
         {
-            if (hitPoints >= CurrentHealth)
-            {
-                CurrentHealth = MinHealth;
-                Kill();
-            }
-            else
-            {
-                CurrentHealth-= hitPoints;
-            }
+            Kill();
         }
+
+        HealthHandler?.Invoke(CurrentHealth);
     }
 
     public void AddHelth(float health)
     {
-        if (health > 0& CurrentHealth!=0)
+        if (health !=0)
         {
-            if (health >= MaxHealth | (CurrentHealth + health)>= MaxHealth)
-            {
-                CurrentHealth = MaxHealth;
-            }
-            else
-            {
-                CurrentHealth += health;
-            }
-        }
+            health = Mathf.Clamp(health, MinHealth, MaxHealth);
+
+            CurrentHealth += health;
+            CurrentHealth = Mathf.Clamp(CurrentHealth, MinHealth, MaxHealth);
+
+            HealthHandler?.Invoke(CurrentHealth);
+        }        
     }
 
     public void Kill()
     {
         isKilled = true;
         _animator.SetBool(HashAnimNames.Death, isKilled);
+    }
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
     }
 }

@@ -14,7 +14,7 @@ public class AddHealthButton : MonoBehaviour
         _button.onClick.AddListener(TaskOnClick);
     }
 
-    void TaskOnClick()
+    private void TaskOnClick()
     {
         _player.AddHelth(10);
     }

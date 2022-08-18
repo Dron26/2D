@@ -23,7 +23,7 @@ public class HealthBar : MonoBehaviour
     {
         if (_player.CurrentHealth!=_slider.value)
         {
-SetHealth(_player.CurrentHealth);
+            SetHealth(_player.CurrentHealth);
         }
             
               

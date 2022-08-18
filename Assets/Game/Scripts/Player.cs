@@ -37,16 +37,16 @@ public class Player : MonoBehaviour
             }
             else
             {
-                CurrentHealth -= hitPoints;
+                CurrentHealth-= hitPoints;
             }
-        }        
+        }
     }
 
     public void AddHelth(float health)
     {
         if (health > 0& CurrentHealth!=0)
         {
-            if (health >= MaxHealth | (CurrentHealth += health)>= MaxHealth)
+            if (health >= MaxHealth | (CurrentHealth + health)>= MaxHealth)
             {
                 CurrentHealth = MaxHealth;
             }

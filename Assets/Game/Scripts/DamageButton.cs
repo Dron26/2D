@@ -15,7 +15,7 @@ public class DamageButton : MonoBehaviour
     }
 
 
-     void TaskOnClick()
+    private void TaskOnClick()
     {
         _player.OnReceiveHit(10);
     }

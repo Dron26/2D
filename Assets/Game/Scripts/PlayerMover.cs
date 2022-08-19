@@ -31,16 +31,8 @@ public class PlayerMover : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>(); 
     }
 
-    private void Update()
-    {
-        if (!_jump)
-        {
-            _jump = Input.GetKey(KeyCode.Space);
-        }
-    }
-
     private void FixedUpdate()
-    { 
+    {
         _isGrounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(_groundCheck.position, _groundedRadius, _whatIsGround);
 
@@ -55,6 +47,14 @@ public class PlayerMover : MonoBehaviour
 
         Move(_jump);
         _jump = false;
+    }
+
+    private void Update()
+    {
+        if (!_jump)
+        {
+            _jump = Input.GetKey(KeyCode.Space);
+        }
     }
 
     private void Move(bool jump)

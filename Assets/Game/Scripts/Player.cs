@@ -26,8 +26,6 @@ public class Player : MonoBehaviour
 
     public void OnReceiveHit(float hitPoints)
     {
-        hitPoints = Mathf.Clamp(hitPoints, MinHealth, MaxHealth);
-
         CurrentHealth -= hitPoints;
         CurrentHealth = Mathf.Clamp(CurrentHealth, MinHealth, MaxHealth);
 
@@ -42,9 +40,7 @@ public class Player : MonoBehaviour
     public void AddHelth(float health)
     {
         if (health !=0)
-        {
-            health = Mathf.Clamp(health, MinHealth, MaxHealth);
-
+        { 
             CurrentHealth += health;
             CurrentHealth = Mathf.Clamp(CurrentHealth, MinHealth, MaxHealth);
 

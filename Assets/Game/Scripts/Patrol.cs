@@ -54,18 +54,18 @@ public class Patrol : MonoBehaviour
         }
     }
 
+    private IEnumerator WaitInPoint()
+    {
+        _selectpoint = Random.Range(0, _points.Length);
+        Flip();
+        _isWalk = true;
+        yield return new WaitForSeconds(0.1f);
+    }
+
     private void Flip()
     {
         _isFacingRight = !_isFacingRight;
         _flip = !_flip;
         _spriteRenderer.flipX = _flip;
-    }
-
-    private IEnumerator WaitInPoint()
-    {
-        _selectpoint = Random.Range(0, _points.Length);       
-        Flip();
-        _isWalk = true;
-        yield return new WaitForSeconds(0.1f);
     }
 }
